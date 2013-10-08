@@ -18,7 +18,7 @@ class tuvan extends Module {
 		$data ['rows'] = ModelTuvan :: getAllTinTuc($offset,$rowpage);
 		$num = ModelTuvan :: countTinTuc();
 		//category
-		$category_tu_van_id = Tool :: getColumns($data ['rows'],'category_tu_van_id');
+		//$category_tu_van_id = Tool :: getColumns($data ['rows'],'category_tu_van_id');
 		//$category_tu_van = ModelCategoryTuvan :: getCatByIds($category_tu_van_id);
 		//$data['category'] = Tool :: changeKey($category_tu_van,'caid');
 		// Load Paging
@@ -49,7 +49,7 @@ class tuvan extends Module {
 				Tool :: addImage('tuvan',ModelTuvan);
 			}
 		}
-		$data['category'] = $category = ModelCategoryTuvan :: getAllCategory();
+		//$data['category'] = $category = ModelCategoryTuvan :: getAllCategory();
 		$this->view ( $_GET ['p'] . '/view/add',$data );
 	}
 	function edit() {
@@ -63,8 +63,8 @@ class tuvan extends Module {
 		}
 		$row = ModelTuvan::getRecordById($_GET ['id']);
 		$data = array ();
-		$data ['category'] = ModelCategoryTuvan :: getAllCategory();
-		$data ['category_id'] = $row ['category_tu_van_id'];
+		//$data ['category'] = ModelCategoryTuvan :: getAllCategory();
+		//$data ['category_id'] = $row ['category_tu_van_id'];
 		$data ['title'] = $row ['title'];
 		$data ['intro'] = $row ['intro'];
 		$data ['content'] = $row ['content'];

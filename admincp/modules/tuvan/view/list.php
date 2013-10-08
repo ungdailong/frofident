@@ -15,7 +15,7 @@
                     <th><strong><input type="checkbox" onclick="$('input[name*=\'id\']').attr('checked', this.checked);"></strong></th>
                     <th><strong>STT</strong></th>
                     <th><strong>Tiêu đề</strong></th>
-                    <th><strong>Danh mục</strong></th>
+
           			<th><strong>Hình</strong></th>
                     <th><strong>Ngày tạo</strong></th>
 
@@ -47,7 +47,7 @@
                         <td class="firstCol"><input type="checkbox" name="id[]" value="<?php echo $id; ?>"> </td>
                         <td class="secondCol"> <?php echo $i; ?> </td>
                         <td><?php echo $title; ?></td>
-						<td><?php echo $category[$row['category_tu_van_id']]['name']?></td>
+
                         <td><img src="<?php echo $uri_small; ?>" width="80px" /></td>
                         <td><?php echo $create_date; ?></td>
 

@@ -7,7 +7,7 @@
         <a href="." title="VTravel">
             <span style="font-size:30px; font-weight:bold;  color:#FFF">
                 Admin
-            </span> 
+            </span>
         </a>
     </div> <!-- END Logo -->
 
@@ -34,21 +34,22 @@
                     break;
 				case "contact": $css15 = "class='active'";
                     break;
-                
+
                 default : $css1 = "class='active'";
                     break;
             }
             ?>
             <div class="navhead"><span>Menu</span><span class="navbullet"></span></div><!-- Sidenav Headline -->
             <div class="subnav"><!-- Sidenav Box -->
-                <ul class="submenu">							
+                <ul class="submenu">
                     <li><a <?php echo $css1; ?> href="<?php echo $mod->url('index.php?p=about'); ?>" title="">Giới thiệu</a></li>
-                    <li><a <?php echo $css2; ?> href="<?php echo $mod->url('index.php?p=dinhcu'); ?>" title="">Chương trình định cư</a></li>    
-                    <li><a <?php echo $css8; ?> href="<?php echo $mod->url('index.php?p=tintuc'); ?>" title="">Tin tức</a></li>      
-                    <li><a <?php echo $css9; ?> href="<?php echo $mod->url('index.php?p=thongtincanluuy'); ?>" title="">Thông tin cần lưu ý</a></li>
-                    <li><a <?php echo $css16; ?> href="<?php echo $mod->url('index.php?p=slider'); ?>" title="">Slide</a></li> 
+					<li><a <?php echo $css1; ?> href="<?php echo $mod->url('index.php?p=product'); ?>" title="">Sản phẩm</a></li>
+                    <li><a <?php echo $css8; ?> href="<?php echo $mod->url('index.php?p=tintuc'); ?>" title="">Tin tức</a></li>
+					<li><a <?php echo $css1; ?> href="<?php echo $mod->url('index.php?p=tuvan'); ?>" title="">Tư vấn</a></li>
+					<li><a <?php echo $css1; ?> href="<?php echo $mod->url('index.php?p=tuvan-video'); ?>" title="">Tư vấn - Video</a></li>
+                    <li><a <?php echo $css16; ?> href="<?php echo $mod->url('index.php?p=slider'); ?>" title="">Slide</a></li>
                     <li><a <?php echo $css15; ?> href="<?php echo $mod->url('index.php?p=contact'); ?>" title="">Liên hệ</a></li>
-                    
+
                 </ul>
             </div>
             <div class="navhead"><span>Admin</span><span class="navbullet"></span></div>

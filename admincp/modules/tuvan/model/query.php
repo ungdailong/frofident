@@ -13,7 +13,6 @@ class ModelTuvan {
 
 		$sql = "insert into #__tu_van set
 			title ='" . $title . "',
-			category_tu_van_id=".$category_id.",
 			intro='" . $intro . "',
 			content='" . $content . "' ,
 			hinh='" . $image_title . "' ,
@@ -34,7 +33,6 @@ class ModelTuvan {
 		if ($image_title == null) {
 			$sql = "update #__tu_van set
 			title ='" . $title . "',
-			category_tu_van_id=".$category_id.",
 			intro='" . $intro . "',
 			content='" . $content . "' ,
 			date_create=".time().",
@@ -44,7 +42,6 @@ class ModelTuvan {
 		else{
 			$sql = "update #__tu_van set
 			title ='" . $title . "',
-			category_tu_van_id=".$category_id.",
 			intro='" . $intro . "',
 			content='" . $content . "' ,
 			hinh='" . $image_title . "' ,

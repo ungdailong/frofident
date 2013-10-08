@@ -23,17 +23,7 @@ if (!defined('DIR_APP'))
                             <th colspan="2"><strong>Information</strong></th>
                         </tr>
                     </thead>
-                    <tr style="font-weight:bold">
-                        <td>Danh mục:</td>
-                        <td>
-                        	<select name="category_id" id="category_id">
-                            	<?php
-									foreach ($category as $index => $one){ ?>
-										<option <?php echo $one['caid'] == $category_id ? 'selected' : ''?>  value="<?php echo $one['caid']?>"><?php echo $one['name']?></option>
-								<?php	} ?>
-							</select>
-                        </td>
-                    </tr>
+
                     <tr>
                         <td>Tiêu đề:</td>
                         <td><input type="text" size="100" value="<?php echo @$title ?>" name="title"></td>
@@ -55,13 +45,7 @@ if (!defined('DIR_APP'))
                     </tr>
 
 
-                    <tr>
-                        <td>Trang chủ:</td>
-                        <td>
-                            <input type="radio" name="trang_chu" value="1" <?php echo @$trang_chu==1 ? 'checked' : ''; ?> /> <?php echo "Yes"; ?>
-                            <input type="radio" name="trang_chu" value="0" <?php echo @$trang_chu==0 ? 'checked' : ''; ?> /> <?php echo "No"; ?>
-                        </td>
-                    </tr>
+
                    <tr>
                         <td>Publish:</td>
                         <td>
