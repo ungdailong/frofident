@@ -6,11 +6,11 @@
 
            	<div class="colL">
             		<div class="formC fixed">
-                  	<label>Họ Tên:</label><input type="text" />
-                      <label>E-mail:</label><input type="text" />
-                      <label>Điện Thoại:</label><input type="text" />
+                  	<label>Họ Tên:</label><input type="text" id = "name" class = "inpDH"/>
+                      <label>E-mail:</label><input type="text" id = "email" class = "inpDH"/>
+                      <label>Điện Thoại:</label><input type="text" id = "mobile" class = "inpDH"/>
                     	<label>Nội Dung:</label>
-                      <textarea></textarea>
+                      <textarea id = "content" class = "inpDH"></textarea>
                       <div class="ptm"><input type="submit" class="bnt" value="Xoá" /> <input type="submit" class="bnt" value="Gửi" /></div>
 
                   </div>
@@ -23,7 +23,7 @@
                         Tel: 08 6299 1437<br />
                         Email: info@profident.com.vn<br />
                   </div>
-					<div class="map"><img src="images/pic/map.jpg" /></div>
+					<div class="map"><img src="<?php echo IMG_DIR?>pic/map.jpg" /></div>
               </div>
 
               <div class="clr"></div>
@@ -31,4 +31,37 @@
 			 </div>
 
         </div>
+        <script>
+	$(function(){
+		$('.colL .bnt:eq(0)').click(function(){
+			$('.colL .inpDH').val('');
+		})
+		$('.colL .bnt:eq(1)').click(function(){
+			var name = $('#name').val();
+			var email = $('#email').val();
+			var mobile = $('#mobile').val();
+			var content = $('#content').val();
+			if(name == '' || email == '' || mobile == '' || content == ''){
+				alert("Vui lòng nhập đủ thông tin");
+				return false;
+			}
+			else{
+				$.ajax({
+					url : "",
+					type : "POST",
+					data :{
+						name : name,
+						email : email,
+						mobile : mobile,
+						content : content,
+						},
+					success : function(){
+						alert("Thành công. Cảm ơn bạn");
+						window.location.href = '';
+					}
+				})
+			}
+		})
+	});
+</script>
         <?php $this -> load -> view ('footer')?>

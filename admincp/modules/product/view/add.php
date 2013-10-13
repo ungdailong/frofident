@@ -4,7 +4,7 @@ if (!defined('DIR_APP'))
 ?>
 
 <div class="box"> <!-- Box begins here -->
-    <h2 style="float:left; width:83%"><?php if ($_GET['q'] == 'add') echo "Add"; elseif ($_GET['q'] == 'Edit') echo "Edit"; ?> Tour</h2> <h2 style="float:right; ">  <?php Admin::button('save, cancel'); ?> </h2>
+    <h2 style="float:left; width:83%"><?php if ($_GET['q'] == 'add') echo "Add"; elseif ($_GET['q'] == 'Edit') echo "Edit"; ?> Sản phẩm</h2> <h2 style="float:right; ">  <?php Admin::button('save, cancel'); ?> </h2>
     <div style="clear:both"></div>
 
     <?php if (@$_SESSION['message']) { ?>
@@ -22,6 +22,24 @@ if (!defined('DIR_APP'))
                     <tr style="font-weight:bold">
                         <td>Name:</td>
                         <td><input type="text" size="100" value="<?php echo @$row['title'] ?>" name="title"></td>
+                    </tr>
+                    <tr>
+                        <td>Danh mục:</td>
+                        <td>
+                            <select name="category_id" class="parenMenu">
+                                <option value="0">-------</option>
+                                <?php
+                                foreach ($categorys as $category) {
+                                    $selected = ($category['caid'] == @$row['category_id']) ? "selected='true'" : "";
+                                    ?>
+                                    <option <?php echo $selected; ?> value="<?php echo $category['caid'] ?>"><?php echo $category['name'] ?></option>
+                                <?php } ?>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Giá (VNĐ):</td>
+                        <td><input type="text" size="100" value="<?php echo @$row['price'] ?>" name="price"></td>
                     </tr>
 					<tr>
                         <td>Intro:</td>
@@ -43,6 +61,7 @@ if (!defined('DIR_APP'))
                     <tr>
                         <td><?php echo "Status"; ?>:</td>
                         <td>
+                        	<?php if(!isset($row['hide'])) $row['hide'] = 'N'?>
                             <input type="radio" name="hide" value="N" <?php echo @$row['hide'] == 'N' ? 'checked' : ''; ?> /> <?php echo LANG_ENABLE; ?>
                             <input type="radio" name="hide" value="Y" <?php echo @$row['hide'] == 'Y' ? 'checked' : ''; ?> /> <?php echo LANG_DISABLE; ?>
                         </td>

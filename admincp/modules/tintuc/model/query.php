@@ -9,20 +9,19 @@ class ModelTintuc {
         $title = addslashes($title);
         $intro = addslashes($intro);
 		$content = addslashes($content_);
-		
-		
-		$sql = "insert into #__tin_tuc set 
-			title ='" . $title . "', 
-			intro='" . $intro . "', 
+
+
+		$sql = "insert into #__tin_tuc set
+			title ='" . $title . "',
+			intro='" . $intro . "',
 			content='" . $content . "' ,
 			hinh='" . $image_title . "' ,
-			date_create=".time().",				
-			trang_chu=" . $trang_chu . ", 
-			hide=".$hide; 
+			date_create=".time().",
+			hide=".$hide;
 
-        
+
 		$res = $this->query($sql);
-		
+
         return $res ? true : false;
     }
 
@@ -37,7 +36,6 @@ class ModelTintuc {
 			intro='" . $intro . "',
 			content='" . $content . "' ,
 			date_create=".time().",
-			trang_chu=" . $trang_chu . ",
 			hide=".$hide."
 			where id='" . $id . "'";
 		}
@@ -48,13 +46,12 @@ class ModelTintuc {
 			content='" . $content . "' ,
 			hinh='" . $image_title . "' ,
 			date_create=".time().",
-			trang_chu=" . $trang_chu . ",
 			hide=".$hide."
 			where id='" . $id . "'";
 		}
-        
+
 		$res = $this->query($sql);
-		
+
         return $res ? true : false;
     }
 

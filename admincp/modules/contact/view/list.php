@@ -11,15 +11,15 @@
     <form id="form2" name="form2" method="post" action="<?php echo $_GET['p']; ?>/delete">
         <table cellspacing="0" cellpadding="0"><!-- Table -->
             <thead>
-                <tr class="alt"> 
+                <tr class="alt">
                     <th><strong><input type="checkbox" onclick="$('input[name*=\'id\']').attr('checked', this.checked);"></strong></th>
                     <th><strong>STT</strong></th>
-                    <th><strong>Tên/Email/Phone</strong></th>                   
-          			
-                    
+                    <th><strong>Tên/Email/Phone</strong></th>
+
+					<th><strong>Duyệt</strong></th>
                     <th><strong>Nội dung</strong></th>
                     <th><strong>Ngày gửi</strong></th>
-                    <th colspan="2" width="120px" >Action</th>
+                    <th width="50px" >Action</th>
                     <th>ID</th>
                 </tr>
 
@@ -33,27 +33,36 @@
 
                 $i = $countrows;
                 foreach ($rows as $row) {
-                    $id = $row['id'];               
+                    $id = $row['id'];
                     $name = $row['name'];
                     $email = $row['email'];
-                    $phone = $row['phone'];
+                    $phone = $row['mobile'];
                     $content = $row['content'];
-                    $create_date = date('d-m-Y',$row['date_create']);                   
+                    $create_date = date('d-m-Y',$row['date_create']);
+                    $publish = $row['approve'];
                     ?>
                     <tr>
                         <td class="firstCol"><input type="checkbox" name="id[]" value="<?php echo $id; ?>"> </td>
                         <td class="secondCol"> <?php echo $i; ?> </td>
-                        <td><?php echo '<b>'.$name.'</b></br><i style="color:red">'.$email.'</i></br><i style="color:blue">'.$phone.'</i>'; ?></td>                        
-                        
-                        <td><?php echo $content; ?></td> 
+                        <td><?php echo '<b>'.$name.'</b></br><i style="color:red">'.$email.'</i></br><i style="color:blue">'.$phone.'</i>'; ?></td>
+						<td>
+                            <?php
+                            if ($publish == 'Y')
+                                $icon_pub = "Publish"; else
+                                $icon_pub = "Unpublish";
+                            ?>
+                            <a href="<?php echo $mod->url('index.php?p=' . $_GET['p']) ?>/publish/<?= $id ?>">
+                                <img src="images/<?= $icon_pub ?>.png" title="<?= $icon_pub ?>" /></a>
+                        </td>
+                        <td><?php echo $content; ?></td>
                         <td><?php echo $create_date; ?></td>
-                        
-                        <td colspan="2"><?php Admin::delete($id); ?></td>
+
+                        <td><?php Admin::delete($id); ?></td>
                         <td><?php echo $id; ?></td>
                     </tr>
-                    
+
                     <?php
-						            
+
 					$i++;
 				}
 			}

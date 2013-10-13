@@ -7,18 +7,13 @@ class ModelTuvanVideo {
     function insert($image_title) {
         extract($_POST);
         $title = addslashes($title);
-        $intro = addslashes($intro);
-		$content = addslashes($content_);
-
 
 		$sql = "insert into #__tu_van_video set
 			title ='" . $title . "',
-			intro='" . $intro . "',
-			content='" . $content . "' ,
+			url='" . $url . "',
 			hinh='" . $image_title . "' ,
 			date_create=".time().",
 			hide=".$hide;
-
 
 		$res = $this->query($sql);
 
@@ -28,27 +23,15 @@ class ModelTuvanVideo {
     function update($image_title, $id) {
         extract($_POST);
         $title = addslashes($title);
-        $intro = addslashes($intro);
-		$content = addslashes($content_);
-		if ($image_title == null) {
-			$sql = "update #__tu_van_video set
-			title ='" . $title . "',
-			intro='" . $intro . "',
-			content='" . $content . "' ,
-			date_create=".time().",
-			hide=".$hide."
-			where id='" . $id . "'";
-		}
-		else{
-			$sql = "update #__tu_van_video set
-			title ='" . $title . "',
-			intro='" . $intro . "',
-			content='" . $content . "' ,
-			hinh='" . $image_title . "' ,
-			date_create=".time().",
-			hide=".$hide."
-			where id='" . $id . "'";
-		}
+
+		$sql = "update #__tu_van_video set
+		title ='" . $title . "',
+		url='" . $url . "',
+		hinh='" . $image_title . "' ,
+		date_update=".time().",
+		hide=".$hide."
+		where id='" . $id . "'";
+
 
 		$res = $this->query($sql);
 

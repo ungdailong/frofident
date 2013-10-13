@@ -46,7 +46,13 @@ class tuvan_video extends Module {
 			if (empty ( $title )) {
 				$_SESSION ['message'] = LANG_REQUIRE;
 			} else {
-				Tool :: addImage('tuvan',ModelTuvan);
+				$hinh = Tool :: getThumbailVieo($url);
+				if(ModelTuvanVideo :: insert($hinh,$_GET['id'])){
+					$_SESSION ['message'] = LANG_UPDATE_SUCCESS;
+					$this->redirect('index.php?p=' . $_GET['p']);
+				} else {
+					$_SESSION ['message'] = LANG_UPDATE_FAILED;
+				}
 			}
 		}
 		//$data['category'] = $category = ModelCategoryTuvan :: getAllCategory();
@@ -58,41 +64,41 @@ class tuvan_video extends Module {
 			if (empty ( $title )) {
 				$_SESSION ['message'] = LANG_REQUIRE;
 			} else {
-				Tool :: editImage('tuvan',ModelTuvan);
+				$hinh = Tool :: getThumbailVieo($url);
+				if(ModelTuvanVideo :: update($hinh,$_GET['id'])){
+					$_SESSION ['message'] = LANG_UPDATE_SUCCESS;
+				} else {
+					$_SESSION ['message'] = LANG_UPDATE_FAILED;
+				}
 			}
 		}
-		$row = ModelTuvan::getRecordById($_GET ['id']);
+
+		$row = ModelTuvanVideo::getRecordById($_GET ['id']);
 		$data = array ();
-		//$data ['category'] = ModelCategoryTuvan :: getAllCategory();
-		//$data ['category_id'] = $row ['category_tu_van_id'];
 		$data ['title'] = $row ['title'];
-		$data ['intro'] = $row ['intro'];
-		$data ['content'] = $row ['content'];
-		$data ['uri'] = _path_image . 'tuvan/small_' . $row ['hinh'];
-		$data ['image_name'] = $row ['hinh'];
-		$data ['trang_chu'] = $row ['trang_chu'];
+		$data ['url'] = $row ['url'];
 		$data ['hide'] = $row ['hide'];
 		$this->view ( $_GET ['p'] . '/view/add', $data );
 	}
 	function homepageshow() {
 		//$this->query ( "Update #__tin_tuc Set trang_chu=0 Where trang_chu=1 and id <>" . $_GET ['id'] );
-		$this->query ( "Update #__tin_tuc Set trang_chu=if(trang_chu='1','0','1'),date_create=" . time () . " Where id=" . $_GET ['id'] );
+		$this->query ( "Update #__tu_van_video Set trang_chu=if(trang_chu='1','0','1'),date_create=" . time () . " Where id=" . $_GET ['id'] );
 		$this->redirect ( 'index.php?p=' . $_GET ['p'] );
 	}
 	// publish
 	function publish() {
-		$this->query ( "Update #__tin_tuc Set hide=if(hide='1','0','1') ,date_create=" . time () . " Where id=" . $_GET ['id'] );
+		$this->query ( "Update #__tu_van_video Set hide=if(hide='1','0','1') ,date_update=" . time () . " Where id=" . $_GET ['id'] );
 		$this->redirect ( 'index.php?p=' . $_GET ['p'] );
 	}
 
 	// publish
 	function remove() {
-		$row = $this->row ( 'select * from #__tin_tuc where id = "' . $_GET ['id'] . '"' );
+		$row = $this->row ( 'select * from #__tu_van_video where id = "' . $_GET ['id'] . '"' );
 		$img = $row ['hinh'];
 		unlink ( "../application/static/upload/images/tintuc/" . $img );
 		unlink ( "../application/static/upload/images/tintuc/small_" . $img );
 
-		$this->query ( "Delete From #__tin_tuc Where id=" . $_GET ['id'] );
+		$this->query ( "Delete From #__tu_van_video Where id=" . $_GET ['id'] );
 		$this->redirect ( 'index.php?p=' . $_GET ['p'] );
 	}
 }

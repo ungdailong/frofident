@@ -5,30 +5,19 @@
 
                <div class="contentPro fixed">
                	<img src="images/pic/pic_detail.jpg" class="imgRight borImg" />
-               	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quis nulla id orci malesuada porta posuere quis massa. Nunc vitae purus non augue scelerisque ultricies vitae et velit. Sed vitae lectus id sem lobortis scelerisque. Praesent eget consequat libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quis nulla id orci malesuada porta posuere quis massa. Nunc vitae purus non augue scelerisque ultricies vitae et velit. Sed vitae lectus id sem lobortis scelerisque. Praesent eget consequat libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quis nulla id orci malesuada porta posuere quis massa. Nunc vitae purus non augue scelerisque ultricies vitae et velit. Sed vitae lectus id sem lobortis scelerisque. Praesent eget consequat libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quis nulla id orci malesuada porta posuere quis massa. Nunc vitae purus non augue scelerisque ultricies vitae et velit. Sed vitae lectus id sem lobortis scelerisque. Praesent eget consequat libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quis nulla
+               <?php echo $curaprox -> content?>
                </div>
 
                <hr />
 
                <ul class="listProduct">
-               	<li><a href="#"><img src="images/pic/pro01.jpg" /><b>xem thêm →</b></a></li>
-                  <li><a href="#"><img src="images/pic/pro02.jpg" /><b>xem thêm →</b></a></li>
-                  <li><a href="#"><img src="images/pic/pro01.jpg" /><b>xem thêm →</b></a></li>
-                  <li><a href="#"><img src="images/pic/pro02.jpg" /><b>xem thêm →</b></a></li>
-                  <li><a href="#"><img src="images/pic/pro01.jpg" /><b>xem thêm →</b></a></li>
-                  <li><a href="#"><img src="images/pic/pro02.jpg" /><b>xem thêm →</b></a></li>
-                  <li><a href="#"><img src="images/pic/pro01.jpg" /><b>xem thêm →</b></a></li>
-                  <li><a href="#"><img src="images/pic/pro02.jpg" /><b>xem thêm →</b></a></li>
-                  <li><a href="#"><img src="images/pic/pro01.jpg" /><b>xem thêm →</b></a></li>
-                  <li><a href="#"><img src="images/pic/pro02.jpg" /><b>xem thêm →</b></a></li>
-                  <li><a href="#"><img src="images/pic/pro01.jpg" /><b>xem thêm →</b></a></li>
-                  <li><a href="#"><img src="images/pic/pro02.jpg" /><b>xem thêm →</b></a></li>
+               <?php foreach ($product as $index => $one) {?>
+               	<li><a href="<?php echo WEB_ROOT?>/san-pham/chi-tiet/<?php echo $one['id']?>"><img src="<?php echo UPLOAD_IMG_DIR?>product/small_<?php echo $one['hinh']?>" /><b>xem thêm →</b></a></li>
+               	<?php }?>
                </ul>
                <div class="clr"></div>
 
-               <div class="pageNum alr ptl">
-               	<a href="#">prev</a>   <a href="#" class="active">1</a>  <a href="#">2</a>  <a href="#">3</a>   <a href="#">next</a>
-               </div>
+               <?php if(isset($pagination)) echo $pagination ?>
 
         </div>
         <!-- en product H -->

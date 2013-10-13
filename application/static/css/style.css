@@ -108,7 +108,7 @@ a:hover { color:#18b9ae; text-decoration:none}
 
 .hotNews { margin-bottom:20px}
 .hotNews .imgNews { margin:0 0 15px 0; float:none}
-.hotNews .listNews li { float:left; width:300px; margin:0 10px; float:left; font-size:12px; clear:none !important; height:300px; overflow:hidden}
+.hotNews .listNews li { float:left; width:300px; margin:0 10px; float:left; font-size:12px; clear:none !important; height:auto; overflow:hidden}
 
 
 

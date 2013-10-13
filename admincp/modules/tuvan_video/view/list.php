@@ -1,6 +1,7 @@
 <?php if (!defined('DIR_APP')) die('Your have not permission'); ?>
+
 <div class="box">
-    <h2 style="float:left; width:80%">Danh sách tin tức - tư vấn</h2> <h2 style="float:right; ">  <?php Admin::button('add, delete'); ?> </h2>
+    <h2 style="float:left; width:80%">Danh sách video</h2> <h2 style="float:right; ">  <?php Admin::button('add, delete'); ?> </h2>
     <div style="clear:both"></div>
     <?php if (@$_SESSION['message']) { ?>
         <div class="warning"><?php
@@ -16,7 +17,7 @@
                     <th><strong>STT</strong></th>
                     <th><strong>Tiêu đề</strong></th>
 
-          			<th><strong>Hình</strong></th>
+          			<th><strong>Video</strong></th>
                     <th><strong>Ngày tạo</strong></th>
 
                     <th><strong>Publish</strong></th>
@@ -35,8 +36,7 @@
                 $i = $countrows;
                 foreach ($rows as $row) {
                     $id = $row['id'];
-
-                    $uri_small = $row['hinh'] != "" ? _path_image . 'tuvan/small_' . $row['hinh'] : "";
+                    $uri_small = Tool :: getThumbailVieo($row['url']);
                     $title = $row['title'];
                     $create_date = date('d-m-Y',$row['date_create']);
                     $display = $row['hide'];

@@ -29,7 +29,7 @@ if (!defined('DIR_APP'))
 							<th colspan="2"><strong>Information</strong></th>
 						</tr>
 					</thead>
-                    <?php 
+                    <?php
                     		$i = $countrows;
                 			foreach ($rows as $index =>$row) {
 							$uri_small = $row['hinh'] != "" ? _path_image . 'slider/small_' . $row['hinh'] : "";
@@ -44,24 +44,24 @@ if (!defined('DIR_APP'))
                         </td>
 						<td>
 						<?php if($uri_small != '' || $uri_small != null){?>
-						Status 
-							
-								<?php if($display=='1') $icon_pub="Unpublish"; else $icon_pub="Publish";  ?>
+						Status
+
+								<?php if($display=='Y') $icon_pub="Unpublish"; else $icon_pub="Publish";  ?>
                                     <a
 							href="<?php echo $mod->url('index.php?p='.$_GET['p'])?>/publish/<?=$id?>">
 								<img src="images/<?=$icon_pub?>.png" title="<?=$icon_pub?>" />
 						</a>
                            <?php }?>
-                                    
+
                         </td>
 						<td colspan="2"><a class="delete"
 							onclick="remove_slide('slider/remove/<?php echo $id?>', 'Are you sure delete ?')"
 							style="cursor: pointer"> <span>Delete</span>
 						</a></td>
 					</tr>
-                    <?php }?> 
-                    
-                    
+                    <?php }?>
+
+
                 </table>
 			</div>
 		</form>
@@ -71,34 +71,7 @@ if (!defined('DIR_APP'))
 <!-- END Box-->
 
 <script type="text/javascript">
-    $.tabs('#tabs a');
 
-
-             
-    CKEDITOR.replace( 'intro',
-    {
-        fullPage : false,
-        extraPlugins : 'docprops',
-                				
-        filebrowserBrowseUrl : 'js/ckfinder/ckfinder.html?type=Images',
-        filebrowserImageBrowseUrl : 'js/ckfinder/ckfinder.html?Type=Images',
-        filebrowserFlashBrowseUrl : 'js/ckfinder/ckfinder.html?Type=Flash',
-        filebrowserUploadUrl : 'js/ckfinder/ckfinder.html?command=QuickUpload&type=Files',
-        filebrowserImageUploadUrl : 'js/ckfinder/ckfinder.html?command=QuickUpload&type=Images',
-        filebrowserFlashUploadUrl : 'js/ckfinder/ckfinder.html?command=QuickUpload&type=Flash'
-    });
-    CKEDITOR.replace( 'content_',
-    	    {
-    	        fullPage : false,
-    	        extraPlugins : 'docprops',
-    	                				
-    	        filebrowserBrowseUrl : 'js/ckfinder/ckfinder.html?type=Images',
-    	        filebrowserImageBrowseUrl : 'js/ckfinder/ckfinder.html?Type=Images',
-    	        filebrowserFlashBrowseUrl : 'js/ckfinder/ckfinder.html?Type=Flash',
-    	        filebrowserUploadUrl : 'js/ckfinder/ckfinder.html?command=QuickUpload&type=Files',
-    	        filebrowserImageUploadUrl : 'js/ckfinder/ckfinder.html?command=QuickUpload&type=Images',
-    	        filebrowserFlashUploadUrl : 'js/ckfinder/ckfinder.html?command=QuickUpload&type=Flash'
-    	    });
     function remove_slide(href,title)
     { //alert(href);
 	    if(confirm(title)) {
@@ -109,5 +82,5 @@ if (!defined('DIR_APP'))
 	    else {
 	    	return false;
 	    }
-    } 
+    }
 </script>

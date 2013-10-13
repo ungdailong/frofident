@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>:::: COMPANY ::::</title>
+<title>:::: <?php echo $_SESSION['title']?> ::::</title>
 <link href="<?php echo CSS_DIR?>setup.css" rel="stylesheet" type="text/css" />
 <link href="<?php echo CSS_DIR?>style.css" rel="stylesheet" type="text/css" />
 
@@ -34,7 +34,22 @@ $(function(){
 
 		});
 </script>
+<script type="text/javascript" src="<?php echo JS_DIR?>fancybox/jquery.mousewheel-3.0.2.pack.js"></script>
+<script type="text/javascript" src="<?php echo JS_DIR?>fancybox/jquery.fancybox-1.3.1.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo JS_DIR?>fancybox/jquery.fancybox-1.3.1.css" media="screen" />
 
+<script type="text/javascript">
+		$(document).ready(function() {
+
+
+			$("#various1").fancybox({
+				'titlePosition'		: 'inside',
+				'transitionIn'		: 'none',
+				'transitionOut'		: 'none'
+			});
+
+		});
+	</script>
 </head>
 
 <body>
@@ -43,22 +58,21 @@ $(function(){
 
 	<!-- header -->
 	<div class="header"><div class="inHeader">
-    	 <a href="#" class="logo"><img src="<?php echo IMG_DIR?>logo.png" /></a>
+    	 <a href="<?php echo WEB_ROOT?>" class="logo"><img src="<?php echo IMG_DIR?>logo.png" /></a>
         <div id="smoothmenu1" class="ddsmoothmenu">
             <ul>
-                <li><a href="#"><span>Trang chủ</span></a></li>
-                <li><a href="#"><span>GIỚI THIỆU</span></a></li>
-                <li><a href="#"><span>SẢN PHẨM</span></a>
+                <li><a  <?php if($_SESSION['path'] == 'home') echo "class='active'" ?> href="<?php echo WEB_ROOT?>"><span>Trang chủ</span></a></li>
+                <li><a  <?php if($_SESSION['path'] == 'gioithieu') echo "class='active'" ?>href="<?php echo WEB_ROOT?>/gioi-thieu"><span>GIỚI THIỆU</span></a></li>
+                <li><a  <?php if($_SESSION['path'] == 'sanpham') echo "class='active'" ?>href="<?php echo WEB_ROOT?>/san-pham"><span>SẢN PHẨM</span></a>
                 		<ul>
-                      	<li><a href="#">SẢN PHẨM 1</a></li>
-                         <li><a href="#">SẢN PHẨM 2</a></li>
-                         <li><a href="#">SẢN PHẨM 3</a></li>
-                         <li><a href="#">SẢN PHẨM 4</a></li>
+                		<?php foreach ($GLOBALS['productCategory'] as $index => $one) {?>
+                      	<li><a href="<?php echo WEB_ROOT?>/san-pham/<?php echo $one['uri']?>"><?php echo $one['name']?></a></li>
+                      	<?php } ?>
                       </ul>
                 </li>
-                <li><a href="#"><span>TIN TỨC</span></a></li>
-                <li><a href="#"><span>TƯ VẤN</span></a></li>
-                <li><a href="#"><span>Liên Hệ</span></a></li>
+                <li><a  <?php if($_SESSION['path'] == 'tintuc') echo "class='active'" ?>href="<?php echo WEB_ROOT?>/tin-tuc"><span>TIN TỨC</span></a></li>
+                <li><a  <?php if($_SESSION['path'] == 'tuvan') echo "class='active'" ?>href="<?php echo WEB_ROOT?>/tu-van"><span>TƯ VẤN</span></a></li>
+                <li><a  <?php if($_SESSION['path'] == 'lienhe') echo "class='active'" ?>href="<?php echo WEB_ROOT?>/lien-he"><span>Liên Hệ</span></a></li>
 
             </ul>
         </div>
@@ -67,19 +81,19 @@ $(function(){
     </div></div>
 	<!-- en header -->
 
-
+	<?php if (isset($_SESSION['slide'])) {?>
 	<!-- slide banner top -->
 	<div class="bannerTop bannerSlidePro">
     	<div id="slides">
       		<div class="slides_container">
-                <div class="slide"><img src="<?php echo IMG_DIR?>pic/bannerS1.jpg" /></div>
-                <div class="slide"><img src="<?php echo IMG_DIR?>pic/bannerS1.jpg" /></div>
-                <div class="slide"><img src="<?php echo IMG_DIR?>pic/bannerS1.jpg" /></div>
+      			<?php foreach ($_SESSION['slide'] as $index => $one) {?>
+                <div class="slide"><img src="<?php echo UPLOAD_IMG_DIR?>slider/<?php echo $one['hinh']?>" /></div>
+                <?php }?>
             </div>
         </div>
     </div>
     <!-- en slide banner top -->
-
+	<?php }?>
 
     <!-- bodymain -->
 	<div class="bodyMain">

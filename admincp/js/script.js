@@ -71,7 +71,7 @@ var tbl = {
 	
 }
 ///Load ajax type
-function remove(href,title)
+function remove1(href,title)
 { //alert(href);
 	if(confirm(title)) {
 			document.form2.action = href;

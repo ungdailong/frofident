@@ -5,11 +5,11 @@ class lienhemodel extends CI_Model {
 		$data = array(
 				'name' => $name,
 				'email' => $email,
-				'phone' => $phone,
+				'mobile' => $mobile,
 				'content' => $content,
 				'date_create' => time()
 		);
-		
+
 		$this->db->insert('tbl_contact', $data);
 	}
 }

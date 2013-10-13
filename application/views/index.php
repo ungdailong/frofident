@@ -4,27 +4,28 @@
 
         	<div class="colN">
            	 <h1 class="titleAll">Giới thiệu</h1>
-             	 <p class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quis nulla id orci malesuada porta posuere quis massa. Nunc vitae purus non augue scelerisque ultricies vitae et velit. Sed vitae lectus id sem lobortis scelerisque. Praesent eget consequat libero. </p>
-                <div class="more"><a href="#"> >> xem thêm</a></div>
+             	 <p class="content"><?php echo stripslashes($gioithieu -> intro) ?>. </p>
+                <div class="more"><a href="<?php echo WEB_ROOT?>/gioi-thieu"> >> xem thêm</a></div>
            </div>
 
            <div class="colN marC">
            	 <h1 class="titleAll">Tin tức</h1>
              	 <ul class="listN">
-               	<li><h4><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quis nulla id orci malesuada porta posuere quis massa.</li>
-                  <li><h4><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quis nulla id orci malesuada porta posuere quis massa.</li>
+             	 <?php foreach ($tintuc as $index => $one) {?>
+               	<li><h4><a href="<?php echo WEB_ROOT?>/tin-tuc/chi-tiet/<?php echo $one['id']?>"><?php echo $one['title']?>.</a></h4><?php echo $one['intro']?>.</li>
+                  <?php }?>
                </ul>
-               <div class="more"><a href="#"> >> xem thêm</a></div>
+               <div class="more"><a href="<?php echo WEB_ROOT?>/tin-tuc"> >> xem thêm</a></div>
            </div>
 
            <div class="colN">
            	 <h1 class="titleAll">Tư vấn</h1>
              	 <ul class="listN2">
-               	<li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quis nulla id orci malesuada porta posuere quis massa. </a></li>
-                  <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quis nulla id orci malesuada porta posuere quis massa. </a></li>
-                  <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quis nulla id orci malesuada porta posuere quis massa. </a></li>
+             	 <?php foreach ($tuvan as $index => $one) {?>
+               	<li><a href="<?php echo WEB_ROOT?>/tu-van/chi-tiet/<?php echo $one['id']?>"><?php echo $one['title']?>. </a></li>
+                  <?php }?>
                </ul>
-                <div class="more"><a href="#"> >> xem thêm</a></div>
+                <div class="more"><a href="<?php echo WEB_ROOT?>/tu-van"> >> xem thêm</a></div>
            </div>
 
 
@@ -37,10 +38,9 @@
         <div class="productH">
         		<h1 class="titleAll2">Sản phẩm</h1>
                <ul class="listProduct">
-               	<li><a href="#"><img src="<?php echo IMG_DIR?>pic/pro01.jpg" /><b>xem thêm →</b></a></li>
-                  <li><a href="#"><img src="<?php echo IMG_DIR?>pic/pro02.jpg" /><b>xem thêm →</b></a></li>
-                  <li><a href="#"><img src="<?php echo IMG_DIR?>pic/pro01.jpg" /><b>xem thêm →</b></a></li>
-                  <li><a href="#"><img src="<?php echo IMG_DIR?>pic/pro02.jpg" /><b>xem thêm →</b></a></li>
+               <?php foreach ($product as $index => $one) {?>
+               	<li><a href="<?php echo WEB_ROOT?>/san-pham/chi-tiet/<?php echo $one['id']?>"><img src="<?php echo UPLOAD_IMG_DIR?>product/small_<?php echo $one['hinh']?>" /><b>xem thêm →</b></a></li>
+               	<?php }?>
                </ul>
                <div class="clr"></div>
         </div>

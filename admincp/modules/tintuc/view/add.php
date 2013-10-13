@@ -15,11 +15,11 @@ if (!defined('DIR_APP'))
     <div class="content">
         <div id="tabs" class="htabs"><a tab="#tab_general">Content</a></div>
 
-        <form method="post" enctype="multipart/form-data" name="myform">		
+        <form method="post" enctype="multipart/form-data" name="myform">
             <div id="tab_general">
                 <table class="form">
                     <thead>
-                        <tr class="alt"> 
+                        <tr class="alt">
                             <th colspan="2"><strong>Information</strong></th>
                         </tr>
                     </thead>
@@ -33,34 +33,28 @@ if (!defined('DIR_APP'))
                             <input type="file" name="image" size="30"  />
                             <?php if (!empty($uri)) { ?><img src="<?php echo @$uri ?>" name="<?php echo @$image_name ?>" width="80px" height="80px"/><?php } ?>
                         </td>
-                    </tr> 
+                    </tr>
                     <tr>
                         <td>Giới thiệu (ngoài trang chủ):</td>
                         <td><textarea rows = "10"name="intro" id="intro"><?php echo str_replace("\\", "", @$intro); ?></textarea></td>
-                    </tr> 
+                    </tr>
                     <tr>
                         <td>Nội dung:</td>
                         <td><textarea name="content_" id="content_"><?php echo str_replace("\\", "", @$content); ?></textarea></td>
-                    </tr>                    
-                    
-                    
-                    <tr>
-                        <td>Trang chủ:</td>
-                        <td>
-                            <input type="radio" name="trang_chu" value="1" <?php echo @$trang_chu==1 ? 'checked' : ''; ?> /> <?php echo "Yes"; ?>
-                            <input type="radio" name="trang_chu" value="0" <?php echo @$trang_chu==0 ? 'checked' : ''; ?> /> <?php echo "No"; ?>
-                        </td>
-                    </tr>        
+                    </tr>
+
+
+
                    <tr>
                         <td>Publish:</td>
                         <td>
-                            
+
                             <input type="radio" name="hide" value="0" <?php echo @$hide==0 ? 'checked' : ''; ?> /> <?php echo "Yes"; ?>
                         	<input type="radio" name="hide" value="1" <?php echo @$hide==1 ? 'checked' : ''; ?> /> <?php echo "No"; ?>
                         </td>
-                    </tr>   
+                    </tr>
                 </table>
-            </div>            
+            </div>
         </form>
     </div>
 
@@ -70,13 +64,13 @@ if (!defined('DIR_APP'))
     $.tabs('#tabs a');
 
 
-             
-    
+
+
     CKEDITOR.replace( 'content_',
     	    {
     	        fullPage : false,
     	        extraPlugins : 'docprops',
-    	                				
+
     	        filebrowserBrowseUrl : 'js/ckfinder/ckfinder.html?type=Images',
     	        filebrowserImageBrowseUrl : 'js/ckfinder/ckfinder.html?Type=Images',
     	        filebrowserFlashBrowseUrl : 'js/ckfinder/ckfinder.html?Type=Flash',

@@ -1,6 +1,6 @@
 <?php if (!defined('DIR_APP')) die('Your have not permission'); ?>
 <div class="box">
-    <h2 style="float:left; width:80%">Danh sách tin tức - tư vấn</h2> <h2 style="float:right; ">  <?php Admin::button('add, delete'); ?> </h2>
+    <h2 style="float:left; width:80%">Danh sách tư vấn</h2> <h2 style="float:right; ">  <?php Admin::button('add, delete'); ?> </h2>
     <div style="clear:both"></div>
     <?php if (@$_SESSION['message']) { ?>
         <div class="warning"><?php

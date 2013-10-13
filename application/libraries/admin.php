@@ -1,51 +1,51 @@
-<?php if(!defined('DIR_APP')) die('Your have not permission'); 
+<?php if(!defined('DIR_APP')) die('Your have not permission');
 
 class Admin {
 	function sendMailCreateNews($idhome)
 	{
-		global $mod;	
-		$sql = "select * from tbl_logsupscribers where id_home = '".$idhome."'";				
-		$rows = $mod->rows($sql);	
-		
+		global $mod;
+		$sql = "select * from tbl_logsupscribers where id_home = '".$idhome."'";
+		$rows = $mod->rows($sql);
+
 		//nguoi cap nhat
-		$sqlpubnm1 = "Select * from tbl_customers where  id =  ".$idhome ;									
-		$res11 = mysql_query($sqlpubnm1);	
+		$sqlpubnm1 = "Select * from tbl_customers where  id =  ".$idhome ;
+		$res11 = mysql_query($sqlpubnm1);
 		$user1 = mysql_fetch_array($res11);
-				
+
 		if(!empty($rows))
 		{
 			foreach($rows as $row)
 			{
-				$sqlpubnm = "Select * from tbl_customers where  id =  ".$row['id_per'] ;									
-				$res1 = mysql_query($sqlpubnm);	
+				$sqlpubnm = "Select * from tbl_customers where  id =  ".$row['id_per'] ;
+				$res1 = mysql_query($sqlpubnm);
 				$user = mysql_fetch_array($res1);
-				
-				
+
+
 				$email = $user['email'];
 				$subject = "HotGril";
 				$content = "Hi bạn ".@$user['username']." <br> Bạn ".@$user1['username']." vừa mới cập nhật thêm album hình, Mời bạn quay lại để xem  <br> <img src='".BASE_NAME."upload/avatar/".$user1['image']."' width='120px'  />  <br> ";
 				$bc = "thanhthu@yeah1.vn";$cc = "";
-				$kq = $mod->sendMailSmtp($email,FROM, FROM_NAME, $subject, $content, SIGNATURE_MAIL, $cc,"",$bc);	
+				$kq = $mod->sendMailSmtp($email,FROM, FROM_NAME, $subject, $content, SIGNATURE_MAIL, $cc,"",$bc);
 				//echo $kq;
 			}
 		}
-					
-					
+
+
 	}
-	//Support log thongke 
+	//Support log thongke
 	function TopView($id,$type)
 	{
-		global $mod;	
+		global $mod;
 		$sqlu = "";
 		if($type == 1 )//La hotgirl
 		{
 			$sqlu = "update #__customers set topview = topview + 1 where id =".$id;
-			
+
 		}else if($type == 2) //La topview
 		{
 			$sqlu = "update #__album set topview = topview + 1 where id =".$id;
 		}
-		$numu = $mod->query($sqlu);	
+		$numu = $mod->query($sqlu);
 	}
 	function getRealIpAddr()
 	{
@@ -53,7 +53,7 @@ class Admin {
     {
       $ip=$_SERVER['HTTP_CLIENT_IP'];
     }
-    elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))   
+    elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
     //to check ip is pass from proxy
     {
       $ip=$_SERVER['HTTP_X_FORWARDED_FOR'];
@@ -68,85 +68,85 @@ class Admin {
 
 	function logEdit($title_vi,$title_en,$idmod,$action_vi,$action_en,$idob)
 	{
-		global $mod;	
+		global $mod;
 		$title_vi = addslashes($title_vi);
 		$title_en = addslashes($title_en);
 		//Ghi log hanh dong them, xoa, sua
 		//Insert vào log
 		$sql = "insert into #__logeditmodule set date = now(), title_vi = '".$title_vi."', title_en ='".$title_en."', idob ='".$idob."', idmod ='".$idmod."', action_vi ='".$action_vi."', action_en ='".$action_en."', author= '".$_SESSION['admin_id']."', nameauthor='".$_SESSION['admin_name']."'";
-		$num = $mod->query($sql);		
+		$num = $mod->query($sql);
 	}
 	function checkcombobox($idmod)
 	{
-		global $mod;	
+		global $mod;
 		if($idmod != 7)
 		{
 			$sql = "select * from #__permision where idmod = '".$idmod."' and idgroup = '".@$_SESSION['admin_group_id']."'";
-				
-			$num = $mod->num($sql);		
-			if($num <1)			
+
+			$num = $mod->num($sql);
+			if($num <1)
 				 $mod->aRedirect("Link này không tồn tại.",".");
 		}
 		else
 		{
 			$sql = "select * from #__permision where idmod = '3' and idsec > 0 and idgroup = '".@$_SESSION['admin_group_id']."'";
-				
-			$num = $mod->num($sql);		
-			if($num <1)			
+
+			$num = $mod->num($sql);
+			if($num <1)
 			{
 				$sql1 = "select * from #__permision where idmod = '".$idmod."' and idgroup = '".@$_SESSION['admin_group_id']."'";
-				
-				$num1 = $mod->num($sql1);		
-				if($num1 <1)			
+
+				$num1 = $mod->num($sql1);
+				if($num1 <1)
 					 $mod->aRedirect("Link này không tồn tại.",".");
 			}
 			Admin :: checkpermisiondetail($idmod);
 		}
-			 
+
 	}
-	
+
 	function checkpermision($idmod)
 	{
-		global $mod;	
+		global $mod;
 		if($idmod != 7)
 		{
 			$sql = "select * from #__permision where idmod = '".$idmod."' and idgroup = '".@$_SESSION['admin_group_id']."'";
-				
-			$num = $mod->num($sql);		
-			if($num <1)			
+
+			$num = $mod->num($sql);
+			if($num <1)
 				 $mod->aRedirect("Link này không tồn tại.",".");
 		}
 		else
 		{
 			//$sql = "select * from #__permision where idmod = '3' and idsec > 0 and idgroup = '".@$_SESSION['admin_group_id']."'";
-//				
-//			$num = $mod->num($sql);		
-//			if($num <1)			
+//
+//			$num = $mod->num($sql);
+//			if($num <1)
 //			{
 //				$sql1 = "select * from #__permision where idmod = '".$idmod."' and idgroup = '".@$_SESSION['admin_group_id']."'";
-//				
-//				$num1 = $mod->num($sql1);		
-//				if($num1 <1)			
+//
+//				$num1 = $mod->num($sql1);
+//				if($num1 <1)
 //					 $mod->aRedirect("Link này không tồn tại.",".");
 //			}
 			Admin :: checkpermisiondetail($idmod);
 		}
-			 
+
 	}
 	function checkpermisiondetail($idmod)
 	{
-		global $mod;	
+		global $mod;
 		if($idmod == 7)
 		{
 			$sql = "select * from #__permision where idmod = '7' and idsec > 0 and idgroup = '".@$_SESSION['admin_group_id']."'";
-				
-			$num = $mod->num($sql);		
-			if($num <1)			
+
+			$num = $mod->num($sql);
+			if($num <1)
 			{
 				$sql1 = "select * from #__permision where idmod = '7' and idsec = 0 and idgroup = '".@$_SESSION['admin_group_id']."'";
-				
-				$num1 = $mod->num($sql1);		
-				if($num1 <1)			
+
+				$num1 = $mod->num($sql1);
+				if($num1 <1)
 					 $mod->aRedirect("Link này không tồn tại.",".");
 			}
 			else
@@ -156,18 +156,18 @@ class Admin {
 				$_SESSION['permisionNews'] = $row['permison'];
 			}
 		}
-		
-			 
+
+
 	}
 	function button($action) {
 		global $mod;
-		
+
 		$button = explode(',', str_replace(' ', '', $action));
-	
+
 		$html = '<div class="buttons">';
-		
+
 		foreach($button as $key) {
-		
+
 			if($key=='add' ) {
 				$html .= '<a class="button" onclick="location.href=\''.$mod->url('index.php?p='.$_GET['p'].'&q=add').'\'"><span>Add New</span></a>';
 			}
@@ -187,29 +187,29 @@ class Admin {
 			}
 			if($key=='back') {
 				$html .= '<a class="button" onclick="location.href=\''.$mod->url('index.php?p='.$_GET['p']).'\'"><span>Back</span></a>';
-			}			
+			}
 			if($key=='hdan' ) {
 				$html .= '<a class="button" onclick="location.href=\''.$mod->url('index.php?p='.$_GET['p'].'&q=huongdan').'\'"><span>Hướng dẫn</span></a>';
 			}
 		}
-		
+
 		echo $html .= '</div>';
 	}
-	
+
 	function export($id) {
 		global $mod;
 		if( $_SESSION['admin_id'] ) {
 			echo '[ <a href="'.$mod->url('index.php?p='.$_GET['p'].'&q=export&id='.$id).'">Export</a> ]';
 		}
 	}
-	
+
 	function edit($id) {
 		global $mod;
 		if( $_SESSION['admin_id'] ) {
 			echo ' <a class="edit" href="'.$mod->url('index.php?p='.$_GET['p'].'&q=edit&id='.$id).'">Edit</a>';
 		}
 	}
-	
+
 	function send($id) {
 		global $mod;
 		if( $_SESSION['admin_id'] ) {
@@ -219,34 +219,34 @@ class Admin {
 	function delete($id) {
 		global $mod;
 		if( $_SESSION['admin_id'] ) {
-		
-			$html = '<a class="delete" style="cursor:pointer" onclick="remove(\''.$_GET['p'].'/remove/'.$id.'\', \'Are you sure delete ?\')"><span>Delete</span></a>';
+
+			$html = '<a class="delete" style="cursor:pointer" onclick="remove1(\''.$_GET['p'].'/remove/'.$id.'\', \'Are you sure delete ?\')"><span>Delete</span></a>';
 			echo $html;
 		}
-	} 
+	}
 	function deleteImg($id) {
 		global $mod;
 		if( $_SESSION['admin_id'] ) {
-		
+
 			$html = '<a class="delete" style="cursor:pointer" onclick="remove(\''.$_GET['p'].'/deletegallery/'.$id.'\', \'Are you sure delete ?\')"><span>Delete</span></a>';
 			echo $html;
 		}
-	} 
-	
+	}
+
 	function view($id) {
 		global $mod;
 		if( $_SESSION['admin_id']  ) {
 			echo '<a class="edit" href="'.$mod->url('index.php?p='.$_GET['p'].'&q=viewdetail&id='.$id).'">View</a>';
 		}
 	}
-	
+
 	function upload($file, $rename='', $dir='../upload/'){
-		
+
 		if($_SESSION['admin_id'])
 		{
 			$tmp = $_FILES[$file]['tmp_name'];
 			$name = $_FILES[$file]['name'];
-			
+
 			if(is_array($name)){
 				for($i=0; $i<count($name); $i++){
 					$ext[$i] = strtolower(strrchr($name[$i],'.'));
@@ -261,26 +261,26 @@ class Admin {
 			else{
 				$ext = strtolower(strrchr($name,'.'));
 				$name = empty($rename) ? $name : $rename . $ext;
-				
+
 				if( move_uploaded_file($tmp, $dir.$name) ){
-					
+
 					@chmod($dir, 0777);
 					return $name;
 				}
 			}
 		}
 	}
-	
+
 	function uploadUser($file, $rename='', $dir='../upload/'){
 		if($_SESSION['user_id'])
 		{
 			$tmp = $_FILES[$file]['tmp_name'];
 			$name = $_FILES[$file]['name'];
-			$size = $_FILES[$file]['size'];			
-			
+			$size = $_FILES[$file]['size'];
+
 			//check if its image file
 			if (!getimagesize($tmp))
-			{ 
+			{
 				echo "Invalid Image File...";
 				exit();
 			}
@@ -293,7 +293,7 @@ class Admin {
 					exit;
 				}
 			}
-				
+
 			if(is_array($name)){
 				for($i=0; $i<count($name); $i++){
 					$ext[$i] = strtolower(strrchr($name[$i],'.'));
@@ -314,9 +314,9 @@ class Admin {
 				}
 			}
 		}
-	}	
-	
-/* 
+	}
+
+/*
 * Create Photo Thumbnail
 * Admin: createThumbnail($name,380,550,_product_orginal_path,_product_thumb_path,'');
 * Admin :: createThumbnail($idmod,380,550,$file,"upload/thumb/",'');
@@ -358,9 +358,9 @@ function createThumbnail($image,$largeur_max,$hauteur_max,$source,$destination,$
 			} else {
 				$ratio=1;
 			}
-			if($largeur_src/$hauteur_src>=1 && $largeur_src/$hauteur_src<=1.5){				
+			if($largeur_src/$hauteur_src>=1 && $largeur_src/$hauteur_src<=1.5){
 				$newHeight=$hauteur_max;
-				$newWidth=($largeur_src/$hauteur_src)*$hauteur_max;		
+				$newWidth=($largeur_src/$hauteur_src)*$hauteur_max;
 				$image_dest=imagecreatetruecolor($newWidth, $newHeight);
 				imagecopyresampled($image_dest,$image_src,0,0,0,0,$newWidth,$newHeight,$largeur_src,$hauteur_src);
 			}else{
@@ -400,21 +400,21 @@ function watermarkImage ($SourceFile, $WaterMarkText, $DestinationFile) {
 }
 //warter mark logo
 function waterMarkLogo($orginal, $newImage, $logo){
-	
-	$i1 = asido::image($orginal, $newImage);	
+
+	$i1 = asido::image($orginal, $newImage);
 	Asido::watermark($i1, $logo, ASIDO_WATERMARK_BOTTOM_RIGHT);
-	$i1->save(ASIDO_OVERWRITE_ENABLED);	
+	$i1->save(ASIDO_OVERWRITE_ENABLED);
 }
 //crop image
-function cropPhoto($orginal, $newImage, $w, $h, $x, $y){	
+function cropPhoto($orginal, $newImage, $w, $h, $x, $y){
 	$i11 = asido::image($orginal, $newImage);
 	Asido::Crop($i11, $x, $y, $w,$h);
-	
+
 	$i11->save(ASIDO_OVERWRITE_ENABLED);
 }
 //crop image
-function framePhoto($orginal, $newImage, $w, $h){	
-	$i111 = asido::image($orginal, $newImage);	
+function framePhoto($orginal, $newImage, $w, $h){
+	$i111 = asido::image($orginal, $newImage);
 	Asido::Frame($i111, $w, $h, Asido::Color(252,106,151));
 	$i111->save(ASIDO_OVERWRITE_ENABLED);
 }

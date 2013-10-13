@@ -50,8 +50,9 @@ if (!defined('DIR_APP'))
                     <th><strong><input type="checkbox" onclick="$('input[name*=\'id\']').attr('checked', this.checked);"></strong></th>
                     <th><strong>No</strong></th>
                     <th><strong> <?php echo "Name"; ?></strong></th>
-                    <th><strong> <?php echo "Image"; ?></strong></th>
-
+                    <th><strong> <?php echo "Danh mục"; ?></strong></th>
+                    <th><strong> <?php echo "Hình"; ?></strong></th>
+                    <th><strong> <?php echo "Giá"; ?></strong></th>
                     <th><strong> <?php echo "Status"; ?></strong></th>
                     <th colspan="2" width="120px" >Action</th>
                     <th >ID</th>
@@ -79,8 +80,9 @@ if (!defined('DIR_APP'))
                         <td class="firstCol"><input type="checkbox" name="id[]" value="<?php echo $id; ?>"> </td>
                         <td class="secondCol"> <?php echo $i; ?> </td>
                         <td> <?php echo $name; ?> </td>
+                        <td> <?php echo $categorys[$row['category_id']]['name']; ?> </td>
                         <td><img src="<?php echo $uri_small; ?>" width="80px" /></td>
-
+						<td> <?php echo number_format($row['price'],0,'','.') ?> </td>
                         <td>
                             <?php
                             if ($publish == 'N')

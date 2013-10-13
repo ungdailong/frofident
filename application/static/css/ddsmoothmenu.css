@@ -35,6 +35,10 @@ color: #555;
  background:#18b9ae; text-decoration:none; color:#fff
 }
 
+.ddsmoothmenu .active {
+	background:#18b9ae; text-decoration:none; color:#fff
+}
+
 .ddsmoothmenu ul li a:hover{
  background:#18b9ae; text-decoration:none; color:#fff
 }

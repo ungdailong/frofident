@@ -3,7 +3,7 @@ if (!defined('DIR_APP'))
     die('Your have not permission');
 ?>
 <div class="box"> <!-- Box begins here -->
-    <h2 style="float:left; width:83%"><?php if ($_GET['q'] == 'add') echo "Thêm"; elseif ($_GET['q'] == 'edit') echo "Sửa"; ?> Tin tức</h2> <h2 style="float:right; ">  <?php Admin::button('save, cancel'); ?> </h2>
+    <h2 style="float:left; width:83%"><?php if ($_GET['q'] == 'add') echo "Thêm"; elseif ($_GET['q'] == 'edit') echo "Sửa"; ?> Tư vấn</h2> <h2 style="float:right; ">  <?php Admin::button('save, cancel'); ?> </h2>
     <div style="clear:both"></div>
 
     <?php if (@$_SESSION['message']) { ?>

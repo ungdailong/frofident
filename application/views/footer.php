@@ -8,7 +8,7 @@
 	<div class="footer"><div class="inFooter">
 
         <div class="copyR">
-        	<a href="#">TRANG CHỦ</a>  |  <a href="#">GIỚI THIỆU</a>  |  <a href="#">SẢN PHẨM</a>  |  <a href="#">TIN TỨC</a>  |  <a href="#">TƯ VẤN</a>  |  <a href="#">LIÊN HỆ</a>
+        	<a href="<?php echo WEB_ROOT?>">TRANG CHỦ</a>  |  <a href="<?php echo WEB_ROOT?>/gioi-thieu">GIỚI THIỆU</a>  |  <a href="<?php echo WEB_ROOT?>/san-pham">SẢN PHẨM</a>  |  <a href="<?php echo WEB_ROOT?>/tin-tuc">TIN TỨC</a>  |  <a href="<?php echo WEB_ROOT?>/tu-van">TƯ VẤN</a>  |  <a href="<?php echo WEB_ROOT?>/lien-he">LIÊN HỆ</a>
 			<p>© 2013, profident.com.vn. All Rights Reserved</p>
 		</div>
 

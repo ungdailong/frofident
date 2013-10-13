@@ -38,13 +38,23 @@
 |
 */
 $route['gioi-thieu'] = "gioithieu";
+
+$route['san-pham'] = "sanpham";
+$route['san-pham/(:num)'] = "sanpham/index/$1";
+$route['san-pham/chi-tiet/(:num)'] = "sanpham/chitiet/$1";
+$route['san-pham/(:any)'] = "sanpham/type/$1";
+$route['san-pham/(:any)/(:num)'] = "sanpham/type/$1/$2";
+
 $route['tin-tuc'] = "tintuc";
+$route['tin-tuc/(:num)'] = "tintuc/index/$1";
+$route['tin-tuc/chi-tiet/(:num)'] = "tintuc/chitiet/$1";
+
+$route['tu-van'] = "tuvan";
+$route['tu-van/(:num)'] = "tuvan/index/$1";
+$route['tu-van/chi-tiet/(:num)'] = "tuvan/chitiet/$1";
 $route['lien-he'] = "lienhe";
-$route['chuong-trinh-dinh-cu'] = "chuongtrinhdinhcu";
-$route['thong-tin-luu-y'] = "thongtincanluuy";
-$route['chuongtrinhdinhcu/(:num)'] = "chuongtrinhdinhcu/index/$1";
-$route['tintuc/(:num)'] = "tintuc/index/$1";
-$route['thongtincanluuy/(:num)'] = "thongtincanluuy/index/$1";
+
+
 //$route['search/(:any)'] = "search/index/$1";
 //$route['search?keyword=(:any)'] = "search/index/$1";
 $route['default_controller'] = "home";

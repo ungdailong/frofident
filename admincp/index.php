@@ -12,16 +12,16 @@ $mod->lang('index');
 if (empty($_SESSION['admin_id'])) {
     $mod->load('user', 'login');
 } else {
-    ?>    
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
-    <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en" xml:lang="en"> 
+    ?>
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en" xml:lang="en">
         <head>
             <base href="<?php echo BASE_NAME; ?>admincp/" />
             <script type="text/javascript">
 				var BASE_NAME = '<?php echo BASE_NAME; ?>';
 	        </script>
-            <title>TMVCMS Control panel | TMVCMS Manager</title>
-            <!-- 
+            <title>Frofident Control panel | Frofident Manager</title>
+            <!--
             Loading CSS file
             -->
             <style type="text/css" media="all">
@@ -42,7 +42,7 @@ if (empty($_SESSION['admin_id'])) {
             <style type="text/css">
                 img { behavior: url(js/iepngfix.htc) !important; }
                 .navbullet { behavior: url(js/iepngfix.htc) !important; }
-            </style> 
+            </style>
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
 			<link rel="stylesheet" type="text/css" href="js/jquery/ui-lightness/jquery-ui-1.8.4.custom.css" />
         <!-- Loading javascript -->
@@ -86,6 +86,6 @@ if (empty($_SESSION['admin_id'])) {
     </html>
 <?php }
 mysql_close();
-?>      
+?>
 
 

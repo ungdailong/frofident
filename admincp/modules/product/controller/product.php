@@ -20,7 +20,10 @@ class Product extends Module {
         $num = $this->num($sql);
         $query = $num > 0 ? $sql . " Limit $offset, $rowpage" : $sql;
         $data['rows'] = $this->rows($query);
+        $category_ids = Tool::getColumns($data['rows'],'category_id');
 
+        $data['categorys'] = $this->rows('select * from #__category where caid IN ('.implode(',', $category_ids) . ')');
+        $data['categorys'] = Tool :: changeKey($data['categorys'],'caid');
         $query = "select * from #__products where type = 'curaprox'";
         $data['curaprox'] = $this->row($query);
 
@@ -57,15 +60,19 @@ class Product extends Module {
             	Tool :: addImage('product',ModelProduct);
         	}
         }
-
-        $this->view($_GET['p'] . '/view/add');
+		$data['categorys'] = $this->rows('select * from #__category');
+        $this->view($_GET['p'] . '/view/add',$data);
     }
 
     function edit() {
         // Update data
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if($_GET['id'] == 1){
-
+				if(ModelProduct :: updateCuraProx())
+					$_SESSION['message'] = LANG_UPDATE_SUCCESS;
+				else
+					$_SESSION['message'] = LANG_UPDATE_FAILED;
+				$this->redirect('index.php?p=' . $_GET['p']);
             }else{
 	        	extract($_POST);
 	            if (empty ( $title )) {
@@ -81,6 +88,7 @@ class Product extends Module {
         	$row = $this->row('select * from #__products where type = "curaprox" and id = "' . $_GET['id'] . '"');
         else
         	$row = $this->row('select * from #__products where type = "product" and id = "' . $_GET['id'] . '"');
+        $data['categorys'] = $this->rows('select * from #__category');
 		$data['row'] = $row;
 		$data['uri'] = _path_image . 'product/small_' . $row ['hinh'];
 		//print_r($row);

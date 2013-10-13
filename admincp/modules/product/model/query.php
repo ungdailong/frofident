@@ -10,29 +10,44 @@ class ModelProduct {
         $title = addslashes($title);
         $intro = addslashes($intro);
 		$content = addslashes($content_);
+		$price = addslashes($price);
 		$hide == 'Y' ? 'Y' : 'N';
 		$sql = "insert into #__products set
 			title ='" . $title . "',
+			category_id = " . $category_id.",
 			intro='" . $intro . "',
 			content='" . $content . "' ,
+			price='" . $price . "' ,
 			hinh='" . $image_title . "' ,
 			date_create=".time().",
 			hide='".$hide."'";
 		$res = $this->query($sql);
         return $res ? true : false;
     }
-
+	function updateCuraProx (){
+		extract($_POST);
+		$content = addslashes($content_);
+		$sql = "update #__products set
+			content='" . $content . "' ,
+			date_update=".time()."
+			where id=1";
+		$res = $this->query($sql);
+		return $res ? true : false;
+	}
     function update($image_title, $id) {
     	extract($_POST);
     	$title = addslashes($title);
         $intro = addslashes($intro);
 		$content = addslashes($content_);
+		$price = addslashes($price);
 		$hide == 'Y' ? 'Y' : 'N';
     	if ($image_title == null) {
     		$sql = "update #__products set
 			title ='" . $title . "',
+			category_id = " . $category_id.",
 			intro='" . $intro . "',
 			content='" . $content . "' ,
+			price='" . $price . "' ,
 			date_update=".time().",
 			hide='".$hide."'
 			where id='" . $id . "'";
@@ -40,8 +55,10 @@ class ModelProduct {
     	else{
     		$sql = "update #__products set
 			title ='" . $title . "',
+			category_id = " . $category_id.",
 			intro='" . $intro . "',
 			content='" . $content . "' ,
+			price='" . $price . "' ,
 			hinh='" . $image_title . "' ,
 			date_update=".time().",
 			hide='".$hide."'
