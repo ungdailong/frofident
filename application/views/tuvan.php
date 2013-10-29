@@ -4,23 +4,42 @@
 <script src="<?php echo JS_DIR?>videolightbox/swfobject.js" type="text/javascript"></script>
 
 
+
 <?php $this -> load -> view ('header')?>
+<script src="http://baijs.nl/tinycarousel/js/jquery.tinycarousel.js" type="text/javascript"></script>
+<script src="http://baijs.nl/tinycarousel/js/website.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="http://baijs.nl/tinycarousel/css/tinyscrollbar.css"/>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+    	$('#slider2').tinycarousel({ display: 2 });
+
+    });
+</script>
         <!-- product H -->
         <div class="boxNews">
         		<h1 class="titleAll">Video</h1>
 
                <div class="hotNews">
-               	<ul class="listNews">
+               <div id="slider2" class="listNews">
+                <a class="buttons prev" href="#">left</a>
+               	<div class="viewport">
+               	<ul class="overview">
                		<?php foreach ($video as $index => $one) {
                			$url = $one['url'];
                			$url = str_replace('watch?', '', $url);
                			$url = str_replace('=', '/', $url) . "?autoplay=1&rel=0&enablejsapi=1&playerapiid=ytplayer";
                		?>
                 		<li>
-                        	<a class="voverlay" href="<?php echo $url?>" title="<?php echo $one['title']?>"><img alt="<?php echo $one['title']?>" src="<?php echo $one['hinh']?>" class="imgNews" /></a>
+                        	<a class="voverlay" href="<?php echo $url?>" title="<?php echo $one['title']?>">
+                        		<img alt="<?php echo $one['title']?>" src="<?php echo $one['hinh']?>" class="imgNews" />
+                        	</a>
 						</li>
 					<?php  } ?>
                 	</ul>
+                </div>
+                <a class="buttons next" href="#">right</a>
+                </div>
                   <div class="clr"></div>
                </div>
 
